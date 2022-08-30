@@ -42,7 +42,7 @@ class Solution {
             l.add(mat[i][jj]);
             i++;jj++;
         }
-        System.out.print(l);
+        // System.out.print(l);
         Collections.sort(l);
         // System.out.print(l);
         jj=j;i=0;int len=l.size();int a=0;
