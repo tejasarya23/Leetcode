@@ -1,17 +1,16 @@
 class Solution {
-    int count=0;
     public int goodNodes(TreeNode root) {
-        helper(root,-50000);
-        return count;
+        return helper(root,-50000);
     }
-    public void helper(TreeNode root , int max){
+    public int helper(TreeNode root , int max){
         if(root==null){
-            return ;
+            return 0;
         }
         max=Math.max(root.val,max);
-        if(root.val>=max)count++;
-        helper(root.left,max);
-        helper(root.right,max);
-        return ;
+        if(root.val>=max){
+            return 1+helper(root.left,max)+helper(root.right,max);
+        }else{
+            return helper(root.left,max)+helper(root.right,max);
+        }
     }
 }
