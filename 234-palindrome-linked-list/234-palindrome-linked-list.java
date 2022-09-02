@@ -16,7 +16,7 @@ class Solution {
             slow=slow.next;
             fast=fast.next.next;
         }if(fast.next!=null)fast=fast.next;
-        System.out.print(fast.val);
+        // System.out.print(fast.val);
         ListNode cur=slow.next;
         ListNode prev=slow;
         ListNode mid=slow;
@@ -28,7 +28,7 @@ class Solution {
         }
         // System.out.print(head.toString());
         while(fast!=mid){
-            System.out.print("hi");
+            // System.out.print("hi");
             if(fast.val!=head.val){
                 return false;
             }
