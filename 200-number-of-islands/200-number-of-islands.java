@@ -11,7 +11,7 @@ class Solution {
                 }
             }
         }
-        // System.out.print(Arrays.deepToString(check));
+        System.out.print(Arrays.deepToString(check));
         return count;
     }
     public void dfs(char[][] grid,boolean[][]check,int i , int j){
