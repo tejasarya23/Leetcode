@@ -5,7 +5,7 @@ class Solution {
         for(int i=0;i<s.length();i++){
             mp.put(s.charAt(i),mp.getOrDefault(s.charAt(i),0)+1);
         }
-        System.out.print(mp);
+        // System.out.print(mp);
         TreeMap<Integer , ArrayList<Character>> tree = new TreeMap<>(Collections.reverseOrder());
         
         for(var key : mp.keySet()){
