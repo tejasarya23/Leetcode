@@ -5,7 +5,7 @@ class Solution {
         for(int i=0;i<grid1.length;i++){
             for(int j=0;j<grid1[0].length;j++){
                 if(grid2[i][j]==1&&check[i][j]==false){
-                    System.out.print(" i="+i+" j="+j);
+                    // System.out.print(" i="+i+" j="+j);
                     flag=true;
                     
                     dfs(grid1,grid2,check,i,j);
@@ -13,7 +13,7 @@ class Solution {
                 }
             }
         }
-        System.out.print(Arrays.deepToString(check));
+        // System.out.print(Arrays.deepToString(check));
         return count;
     }
     public void dfs(int[][] grid1,int[][] grid2,boolean[][]check,int i , int j){
