@@ -1,48 +1,58 @@
 class Solution {
-    private int m, n;
-    private int[][] dirs = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
     public int shortestBridge(int[][] grid) {
-	    Deque<int[]> q = new ArrayDeque<>();
-        m = grid.length; n = grid[0].length;
-        int res = 0;
+        int m = grid.length, n = grid[0].length;
+        int step = 0;
+        boolean found = false;
+        Deque<int[]> queue = new ArrayDeque();
         
-        outer:
-        for(int i = 0; i < m; i++)
-            for(int j = 0; j < n; j++)
-                if(grid[i][j] == 1){//first connected component
-                    dfs(grid, i, j, q);
-                    break outer;
-                }
-        
-        while(!q.isEmpty()){//BFS
-            for(int i = q.size(); i > 0; i--){
-                int[] curr = q.poll();
-                
-                for(int d[] : dirs){
-                    int dx = curr[0] + d[0], dy = curr[1] + d[1];
-                    if(dx < 0 || dy < 0 || dx >= m || dy >= n || grid[dx][dy] == 2)//out of bounds or already visited
-                        continue;
-                    
-                    if(grid[dx][dy] == 1) return res;//found the second connected component 
-                    
-                    q.add(new int[]{ dx, dy });//add to queue
-                    grid[dx][dy] = 2;//mark visited
+        // find one island
+        for (int i = 0; i < m; i++) {
+            if (found) {
+                break;
+            }
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == 1) {
+                    dfs(grid, i, j, queue);
+                    found = true;
+                    break;
                 }
             }
-            res++;
         }
-        return -1;
+        
+        // BFS
+        int[][] dir = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+        while (queue.size() > 0) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                int[] curr = queue.poll();
+                for (int[] d : dir) {
+                    int x = curr[0] + d[0];
+                    int y = curr[1] + d[1];
+                    if (x < 0 || y < 0 || x >= m || y >= n || grid[x][y] == 2) {
+                        continue;
+                    }
+                    if (grid[x][y] == 1) {
+                        return step;
+                    }
+                    grid[x][y] = 2;
+                    queue.add(new int[]{x, y});
+                }
+            }
+            step++;
+        }
+        return step;
     }
     
-    private void dfs(int[][] grid, int i, int j, Queue<int[]> q){
-        if(i < 0 || j < 0 || i >= m || j >= n || grid[i][j] == 2 || grid[i][j] == 0)//out of bounds or already visited or water
+    private void dfs(int[][] grid, int i, int j, Deque<int[]> queue) {
+        if (i < 0 || j < 0 || i >= grid.length || j >= grid[0].length || grid[i][j] != 1) {
             return;
-        
-        grid[i][j] = 2;//mark visited
-        q.add(new int[]{ i, j });//add to queue
-        
-        for(int d[] : dirs)//recurse
-            dfs(grid, i + d[0], j + d[1], q);
+        }
+        grid[i][j] = 2;
+        queue.add(new int[]{i, j});
+        dfs(grid, i + 1, j, queue);
+        dfs(grid, i - 1, j, queue);
+        dfs(grid, i, j + 1, queue);
+        dfs(grid, i, j - 1, queue);
     }
 }
 // class Solution {
