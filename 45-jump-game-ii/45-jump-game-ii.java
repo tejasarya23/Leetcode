@@ -1,36 +1,15 @@
 class Solution {
-    public int jump(int[] nums) {
-        
-        if(nums.length == 1)
-            return 0;
-        
-        if(nums[0] == 0)
-            return -1;
-        
-        int maxReach = nums[0];
-        int steps = nums[0];
-        int jumps = 1;
-        
-        for(int i = 1 ; i< nums.length ; i++){
-            
-            if(i == nums.length - 1)
-                return jumps;
-            
-            maxReach = Math.max(maxReach , i + nums[i]);
-            steps--;
-            if(steps == 0){
+    public int jump(int[] A) {
+        int jumps = 0, curEnd = 0, curFarthest = 0;
+        for (int i = 0; i < A.length - 1; i++) {
+            curFarthest = Math.max(curFarthest, i + A[i]);
+            if (i == curEnd) {
                 jumps++;
-                if(i >= maxReach)
-                    return -1;
-                
-                steps = maxReach - i;
+                curEnd = curFarthest;
             }
-            
         }
-        
         return jumps;
     }
-    
 }
 // class Solution {
 //     public int jump(int[] nums) {
