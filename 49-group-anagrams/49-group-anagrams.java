@@ -1,20 +1,34 @@
 class Solution {
     public List<List<String>> groupAnagrams(String[] strs) {
-        if(strs == null || strs.length == 0) return Collections.emptyList();
         Map<String, List<String>> map = new HashMap<>();
-        for(String s: strs){
-            int[] frequencyArr = new int[128];   
-            for(int i = 0;i<s.length();i++){
-                frequencyArr[s.charAt(i) - 'a']++;
+        for(String s : strs){
+            char[] hash = new char[26];
+            for(char c : s.toCharArray()){
+                hash[c-'a']++;
             }
-            String key = Arrays.toString(frequencyArr);
-            // System.out.print(key+" ");
-            List<String> tempList = map.getOrDefault(key, new LinkedList<String>());
-            tempList.add(s);
-            map.put(key,tempList);
+            String ss = String.valueOf(hash);
+            map.putIfAbsent(ss, new ArrayList<>());
+            map.get(ss).add(s);
         }
-        return new LinkedList<>(map.values());
+        
+        return new ArrayList<>(map.values());
     }
+    // public List<List<String>> groupAnagrams(String[] strs) {
+    //     if(strs == null || strs.length == 0) return Collections.emptyList();
+    //     Map<String, List<String>> map = new HashMap<>();
+    //     for(String s: strs){
+    //         int[] frequencyArr = new int[128];   
+    //         for(int i = 0;i<s.length();i++){
+    //             frequencyArr[s.charAt(i) - 'a']++;
+    //         }
+    //         String key = Arrays.toString(frequencyArr);
+    //         // System.out.print(key+" ");
+    //         List<String> tempList = map.getOrDefault(key, new LinkedList<String>());
+    //         tempList.add(s);
+    //         map.put(key,tempList);
+    //     }
+    //     return new LinkedList<>(map.values());
+    // }
     // public List<List<String>> groupAnagrams(String[] strs) {
     //     List<List<String>> res=new ArrayList<>();
     //     boolean []used = new boolean[strs.length];
