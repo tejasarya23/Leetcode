@@ -8,7 +8,7 @@ class Solution {
             }
             if(i!=n-1&&prices[i+1]<prices[i]){
                 profit+=prices[i]-min;
-                min=500000;
+                min=500000;continue;
             }
             // System.out.print(min);
             if(i==n-1&&prices[i]>min){
