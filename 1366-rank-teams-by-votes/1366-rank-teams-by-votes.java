@@ -18,7 +18,7 @@ class Solution {
             }
             return 0;
         });
-        System.out.print(Arrays.deepToString(map));
+        // System.out.print(Arrays.deepToString(map));
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < len; i++){
             sb.append((char)('A' + map[i][len]));
