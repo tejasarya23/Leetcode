@@ -1,1 +1,1 @@
-​
+whenever we are updating maxocrfreq , in that case tere is actual element which has max freq equal to maxocr freq. otherwisw maxocr will remain same.
