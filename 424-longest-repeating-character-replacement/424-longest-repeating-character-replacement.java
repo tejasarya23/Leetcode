@@ -12,7 +12,7 @@ class Solution {
                 freq[s.charAt(start)-'A']--;
                 start++;
             }
-            else max=Math.max(max,end-start+1);
+            max=Math.max(max,end-start+1);
         }
         return max;
     }
