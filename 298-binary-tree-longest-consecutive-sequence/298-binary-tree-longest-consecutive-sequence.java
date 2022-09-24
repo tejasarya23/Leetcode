@@ -1,12 +1,13 @@
 class Solution {
-    int max=0;
+    
     public int longestConsecutive(TreeNode root) {
-        helper(root,root.val+1,0);
-        return max+1;
+        int max=0;
+        return helper(root,root.val+1,0,0)+1;
+
     }
-    public void helper(TreeNode root,int prevval,int cur){
+    public int helper(TreeNode root,int prevval,int cur,int max){
         if(root==null){
-            return ;
+            return max ;
         }
         if(root.val==prevval){
             cur++;
@@ -14,7 +15,8 @@ class Solution {
             cur=0;
         }
         max=Math.max(cur,max);
-        helper(root.left,root.val+1,cur);
-        helper(root.right,root.val+1,cur);
+        int l=helper(root.left,root.val+1,cur,max);
+        int r=helper(root.right,root.val+1,cur,max);
+        return Math.max(l,r);
     }
 }
