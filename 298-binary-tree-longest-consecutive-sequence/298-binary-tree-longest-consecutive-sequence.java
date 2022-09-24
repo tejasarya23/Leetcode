@@ -1,9 +1,6 @@
-class Solution {
-    
+class Solution {   
     public int longestConsecutive(TreeNode root) {
-        int max=0;
         return helper(root,root.val+1,0,0)+1;
-
     }
     public int helper(TreeNode root,int prevval,int cur,int max){
         if(root==null){
