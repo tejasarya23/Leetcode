@@ -3,14 +3,14 @@ class Solution {
         boolean col0=false;
         for(int i=0;i<matrix.length;i++){
             if(matrix[i][0]==0){
-                col0=true;
+                col0=true;break;
             }
         }
         System.out.print(col0);
         boolean row0=false;
         for(int i=0;i<matrix[0].length;i++){
             if(matrix[0][i]==0){
-                row0=true;
+                row0=true;break;
             }
         }
         // System.out.print(row0);
