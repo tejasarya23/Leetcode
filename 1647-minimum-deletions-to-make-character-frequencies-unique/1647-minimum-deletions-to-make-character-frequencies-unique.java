@@ -8,7 +8,7 @@ class Solution {
         reverse(arr);
         // Arrays.sort(arr, (int o1, int o2) -> o2 - o1);
         int count=0;
-        System.out.print(Arrays.toString(arr));
+        // System.out.print(Arrays.toString(arr));
         for(int i=0;i<arr.length-1;i++){
             while( (arr[i]!=0||arr[i+1]!=0) && arr[i]<=arr[i+1]){
                 count++;
