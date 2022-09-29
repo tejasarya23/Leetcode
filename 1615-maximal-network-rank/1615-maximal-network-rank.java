@@ -57,7 +57,7 @@ class Solution {
             int edgeCount = 0;
             for (int[] road : roads) {
                 if (degrees[road[0]] == firstMax && degrees[road[1]] == secondMax) edgeCount++;
-                if (degrees[road[0]] == secondMax && degrees[road[1]] == firstMax) edgeCount++;
+                else if(degrees[road[0]] == secondMax && degrees[road[1]] == firstMax) edgeCount++;
             }
             
             // if all pairs are connected to each other, then subtract 1
