@@ -26,7 +26,7 @@ class Solution {
         si=ind;ei=nums.length;
         while(true){
             ind=Arrays.binarySearch(nums,si,ei,target);
-              System.out.print(ind);
+              // System.out.print(ind);
             if(ind==nums.length-1){res[1]=nums.length-1;return res;}
             if((nums[ind]!=nums[ind+1])){
                 break;
