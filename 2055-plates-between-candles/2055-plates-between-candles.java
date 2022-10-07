@@ -30,7 +30,7 @@ class Solution {
             int rp=ml[queries[i][1]];
             res[i]=Math.max(0,ps[rp]-ps[lp]);
         }
-        System.out.print(Arrays.toString(mr));
+        // System.out.print(Arrays.toString(mr));
         return res;
     }
 }
