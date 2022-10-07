@@ -1,15 +1,15 @@
 class Solution {
     public int[] searchRange(int[] nums, int target) {
         int res[]= new int[2];
-        if(nums.length==1){
-            if(nums[0]==target){
-                res[0]=0;res[1]=0;
-                return res;
-            }else{
-                res[0]=-1;res[1]=-1;
-                return res;
-            }
-        }
+        // if(nums.length==1){
+        //     if(nums[0]==target){
+        //         res[0]=0;res[1]=0;
+        //         return res;
+        //     }else{
+        //         res[0]=-1;res[1]=-1;
+        //         return res;
+        //     }
+        // }
         int si=0;int ei=nums.length;int ind=0;
         while(true){
             ind=Arrays.binarySearch(nums,si,ei,target);
