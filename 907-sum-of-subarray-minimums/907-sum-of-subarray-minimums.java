@@ -1,18 +1,18 @@
 class Solution {
-    public int sumSubarrayMins(int[] arr) {
-        int len = arr.length;
-        long sum = 0;
+    public int sumSubarrayMins(int[] A) {
         Stack<Integer> stack = new Stack<>();
-        int j, k;
-
-        for (int i = 0; i <= len; i++) {
-            while (!stack.isEmpty() && arr[stack.peek()] > (i == len ? Integer.MIN_VALUE : arr[i])) {
-                j = stack.pop();
-                k = stack.isEmpty() ? -1 : stack.peek();
-                sum += (long)arr[j] * (i - j) * (j - k);
+        int[] dp = new int[A.length + 1];
+        stack.push(-1);
+        int result = 0, M = (int)1e9 + 7;
+        for (int i = 0; i < A.length; i++) {
+            while (stack.peek() != -1 && A[i] <= A[stack.peek()]) {
+                stack.pop();
             }
+            dp[i + 1] = (dp[stack.peek() + 1] + (i - stack.peek()) * A[i]) % M;
             stack.push(i);
+            result += dp[i + 1];
+            result %= M;
         }
-        return (int)(sum % (long) (1e9 + 7));
+        return result;
     }
 }
