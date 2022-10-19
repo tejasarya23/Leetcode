@@ -15,7 +15,7 @@ class Solution {
                 cmp++;
             }
         }
-        System.out.print(parentToKids);
+        // System.out.print(parentToKids);
 
         return cmp-1;
     }
