@@ -54,7 +54,7 @@ class Solution {
                 }
             }
         }
-        System.out.print(Arrays.toString(uf.root));
+        // System.out.print(Arrays.toString(uf.root));
         int count=0;
         for(int i=0;i<len;i++){
             if(uf.root[i]==i){
