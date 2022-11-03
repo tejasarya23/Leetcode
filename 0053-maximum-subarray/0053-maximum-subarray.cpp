@@ -1,14 +1,26 @@
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
-        int res = INT_MIN;
-        // how could I all the possible matches without looping it twice
-        // we could use dp to calculate the max of array ending with idx i
-        int last = 0;
-        for(int end = 0; end < nums.size();end++){
-            last = nums[end] + max(last,0);
-            res = max(last,res);
+        int prevSubIndex = 1, n = nums.size(), subSum, answer = INT_MIN;
+        vector<int> prefixSum = {0};
+        prefixSum.insert(prefixSum.end(), nums.begin(), nums.end());
+        answer = nums[0];
+        // Get prefix sum
+        for (int i = 1; i < n + 1; i++) {
+            prefixSum[i] += prefixSum[i - 1];
         }
-        return res;
+        // Find max sub array sum
+        for (int i = 1; i < n; i++) {
+            subSum = prefixSum[i] - prefixSum[prevSubIndex - 1] + nums[i];
+            if (nums[i] > subSum) {
+                // Update max sub array sum starting index
+                prevSubIndex = i + 1;
+                answer = max(nums[i], answer);
+            }
+            else {
+                answer = max(subSum, answer);
+            }
+        }
+        return answer;
     }
 };
