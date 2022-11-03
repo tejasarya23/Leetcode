@@ -37,29 +37,46 @@ class Solution {
 }
 
 class DSU {
-    private int parent[];
-    
-    DSU(int n) {
-        parent = new int[n];
-        for(int i = 0; i < n; i++)
-            parent[i] = i;
-    }
-    
-    public int find(int x) {
-        while(x != parent[x]) {
-            parent[x] = parent[parent[x]];//path compression
-            x = parent[x];
+    private int[] root;
+ 
+    private int[] rank;
+
+    public DSU(int size) {
+        root = new int[size];
+        rank = new int[size];
+        for (int i = 0; i < size; i++) {
+            root[i] = i;
+            rank[i] = 1; 
         }
-        return x;
     }
-    
+
+    public int find(int x) {
+        if (x == root[x]) {
+            return x;
+        }
+        return root[x] = find(root[x]);
+    }
+
     public boolean union(int x, int y) {
         int rootX = find(x);
         int rootY = find(y);
-            
-        if(rootX == rootY) return false;
-        
-        parent[rootX] = rootY;
+        if(rootX==rootY){
+            return false;
+        }
+        else if (rootX != rootY) {
+            if (rank[rootX] > rank[rootY]) {
+                root[rootY] = rootX;
+            } else if (rank[rootX] < rank[rootY]) {
+                root[rootX] = rootY;
+            } else {
+                root[rootY] = rootX;
+                rank[rootX] += 1;
+            }
+        }
         return true;
+    }
+
+    public boolean connected(int x, int y) {
+        return find(x) == find(y);
     }
 }
